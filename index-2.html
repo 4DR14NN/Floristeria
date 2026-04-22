@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLŌRA.AI — La flor que te mereces</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">FLŌRA.AI</span>
+    <span class="nav-tag">Sistema de asignación botánica v2.4</span>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Inteligencia artificial aplicada a la botánica emocional</p>
+      <h1>La flor que<br>te mereces</h1>
+      <p class="hero-sub">No eliges. El algoritmo analiza tu mundo interior y decide qué flor refleja exactamente quién
+        eres. Sin filtros. Sin mentiras.</p>
+      <a href="#tiers" class="btn-primary">Ver protocolos</a>
+    </div>
+    <div class="hero-grid" aria-hidden="true">
+      <div class="grid-line" style="--i:0"></div>
+      <div class="grid-line" style="--i:1"></div>
+      <div class="grid-line" style="--i:2"></div>
+      <div class="grid-line" style="--i:3"></div>
+      <div class="grid-line" style="--i:4"></div>
+      <div class="grid-line" style="--i:5"></div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <p class="section-label">Proceso</p>
+    <h2>¿Cómo funciona?</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <p class="step-title">Elige tu protocolo</p>
+        <p class="step-desc">Selecciona el nivel de análisis. Cada tier profundiza más en tu interior.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <p class="step-title">Responde al formulario</p>
+        <p class="step-desc">El sistema te formula preguntas que nadie suele hacer. Responde con honestidad.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <p class="step-title">La IA decide</p>
+        <p class="step-desc">El algoritmo procesa tus respuestas y asigna la flor que te corresponde. Sin negociación.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section id="tiers">
+    <p class="section-label">Protocolos disponibles</p>
+    <h2>Elige tu nivel de exposición</h2>
+    <div class="tiers-grid">
+
+      <div class="tier-card" data-tier="basic">
+        <div class="tier-header">
+          <span class="tier-badge">Basic</span>
+          <span class="tier-price">Gratuito</span>
+        </div>
+        <p class="tier-desc">Una exploración superficial. Tres preguntas. Una flor. Sin explicaciones profundas.</p>
+        <ul class="tier-features">
+          <li>3 preguntas de diagnóstico</li>
+          <li>Nombre de tu flor asignada</li>
+          <li>Diagnóstico breve</li>
+        </ul>
+        <button class="btn-tier" onclick="abrirFormulario('basic')">Iniciar protocolo Basic</button>
+      </div>
+
+      <div class="tier-card tier-featured" data-tier="standard">
+        <div class="tier-badge-top">Más elegido</div>
+        <div class="tier-header">
+          <span class="tier-badge">Standard</span>
+          <span class="tier-price">4,99 €</span>
+        </div>
+        <p class="tier-desc">Análisis intermedio. El algoritmo necesita más datos para una asignación precisa.</p>
+        <ul class="tier-features">
+          <li>6 preguntas de diagnóstico</li>
+          <li>Nombre y origen de tu flor</li>
+          <li>Diagnóstico detallado</li>
+          <li>Perfil psicobotánico</li>
+        </ul>
+        <button class="btn-tier btn-tier-featured" onclick="abrirFormulario('standard')">Iniciar protocolo
+          Standard</button>
+      </div>
+
+      <div class="tier-card" data-tier="premium">
+        <div class="tier-header">
+          <span class="tier-badge">Premium</span>
+          <span class="tier-price">9,99 €</span>
+        </div>
+        <p class="tier-desc">Exposición total. El sistema accede a las capas más profundas de tu psicología.</p>
+        <ul class="tier-features">
+          <li>10 preguntas de diagnóstico</li>
+          <li>Flor + especie botánica exacta</li>
+          <li>Diagnóstico clínico completo</li>
+          <li>Informe de personalidad</li>
+          <li>Recomendación de cuidados</li>
+        </ul>
+        <button class="btn-tier" onclick="abrirFormulario('premium')">Iniciar protocolo Premium</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- OVERLAY FORMULARIO -->
+  <div id="formulario-overlay" class="overlay hidden">
+    <div class="overlay-inner">
+
+      <button class="overlay-close" onclick="cerrarFormulario()">✕</button>
+
+      <p class="form-label" id="form-tier-label">Protocolo Basic</p>
+      <h2 class="form-title">Formulario de diagnóstico</h2>
+      <p class="form-subtitle">Responde con honestidad. El algoritmo detecta las mentiras.</p>
+
+
+
+      <div id="preguntas-container"></div>
+
+      <button id="submit-btn" onclick="enviar()">Ejecutar análisis</button>
+      <div id="loading-msg">analizando patrones psicológicos...</div>
+
+      <div id="result-box">
+        <div class="result-header">
+          <span class="result-label">Flor asignada por el sistema</span>
+          <span class="result-tier-badge" id="result-tier-badge"></span>
+        </div>
+        <div class="flor-nombre" id="flor-nombre"></div>
+        <div class="flor-texto" id="flor-texto"></div>
+        <button class="btn-reiniciar" onclick="reiniciar()">Nuevo diagnóstico</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">FLŌRA.AI</span>
+    <span class="footer-copy">Sistema de asignación botánica — Todos los diagnósticos son definitivos</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
